@@ -1,0 +1,1 @@
+match (u:User)-[:POSTED]->(t:Tweet)-[:URL_USED]->(r:Url) where u.sub_category = 'GOP' and r.url<>"" and t.month = '1' and t.year = '2016' return u.screen_name, collect(r.url);

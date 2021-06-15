@@ -1,0 +1,1 @@
+SELECT hashtagname, COUNT(hashtagname) AS `num_uses` FROM tagged t inner join newtweet n inner join user u on u.screen_name = n.posting_user on t.tid = n.tid where sub_category = 'GOP' and year_posted = 2016 and month_posted in (1,2,3) GROUP BY hashtagname ORDER BY `num_uses` DESC LIMIT 5;

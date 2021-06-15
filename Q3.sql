@@ -1,0 +1,1 @@
+select distinct screen_name, state from user u join tagged t join newtweet n on t.tid = n.tid on n.posting_user = u.screen_name where t.hashtagname in ('HappyNewYear','NewYear','NewYears','NewYearsDay') order by u.numFollowers desc limit 12;

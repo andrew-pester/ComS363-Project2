@@ -1,0 +1,1 @@
+select textbody, hashtagname, screen_name, sub_category from newtweet n inner join tagged t on t.tid= n.tid inner join user u on u.screen_name = n.posting_user  where (sub_category = 'GOP' or sub_category = 'Democrat') and state = 'ohio' and month_posted = 1 and year_posted = 2016 and hashtagname = 'ohio' limit 5;

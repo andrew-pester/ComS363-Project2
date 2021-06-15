@@ -1,0 +1,2 @@
+select screen_name, sub_category, numFollowers from user where sub_category = 'GOP' order by numFollowers desc limit 5;
+select screen_name, sub_category, numFollowers from user where sub_category = 'Democrat' order by numFollowers desc limit 5;

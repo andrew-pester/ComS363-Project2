@@ -1,0 +1,1 @@
+SELECT COUNT( distinct state) as `state_num`, group_concat(distinct state) as `states`, hashtagname FROM tagged t inner join newtweet n inner join user u on u.screen_name = n.posting_user on t.tid = n.tid  where year_posted = 2016 and state != 'na' GROUP BY t.hashtagname ORDER BY `state_num` DESC LIMIT 5;

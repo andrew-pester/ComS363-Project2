@@ -1,0 +1,1 @@
+SELECT m.screen_name , state, group_concat(distinct posting_user) FROM mentioned m inner join newtweet n inner join user u on u.screen_name = n.posting_user on m.tid = n.tid  where sub_category = 'GOP' and year_posted = 2016 and month_posted in (1) GROUP BY m.screen_name ORDER BY COUNT(m.screen_name) DESC LIMIT 5;

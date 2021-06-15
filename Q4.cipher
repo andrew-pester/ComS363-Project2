@@ -1,0 +1,2 @@
+match (u:User) where u.sub_category = 'GOP' return u.screen_name, u.sub_category,u.followers order by toInteger(u.followers) desc limit 5;
+match (u:User) where u.sub_category = 'democrat' return u.screen_name, u.sub_category,u.followers order by toInteger(u.followers) desc limit 5;

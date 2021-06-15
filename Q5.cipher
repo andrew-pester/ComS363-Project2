@@ -1,0 +1,1 @@
+match (r:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User) where u.location IN['Ohio', 'Alaska', 'Alabama'] and t.month = '1' and t.year = '2016' and r.name<>""  return distinct r.name, u.location;

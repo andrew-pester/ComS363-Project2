@@ -1,0 +1,1 @@
+match(r:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User)-[:FROM]->(s:State) where r.name<>"" and s.name<>"na" return count(distinct s.name),collect(distinct  s.name),r.name order by count(DISTINCT s.name) desc limit 5;

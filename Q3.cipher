@@ -1,0 +1,1 @@
+match (r:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User) where r.name IN['HappyNewYear','NewYear','NewYears','NewYearsDay']  return u.screen_name, u.location order by toInteger(u.followers) desc limit 12;

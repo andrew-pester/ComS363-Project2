@@ -1,0 +1,5 @@
+match (m:User)<-[:MENTIONED]-(t:Tweet)<-[:POSTED]-(u:User)
+where t.month="1" and t.year="2016" and u.sub_category="GOP" and m.screen_name<>""
+//with u,m,t, count(u.screen_name) desc limit 5 AS c
+//this doesn't work as said in piazza and have no idea how to do it without including the count so it is here to stay
+return m.screen_name, m.location, collect(distinct u.screen_name),count(u.screen_name) order by count(u.screen_name) desc limit 5;

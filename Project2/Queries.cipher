@@ -1,0 +1,22 @@
+match (t:Tweet)<-[:POSTED]-(u:User) where t.month = '1' and t.year = '2016' return t.retweet_count,t.text, u.screen_name, u.category, u.sub_category order by toInteger(t.retweet_count) desc limit 5;
+
+match(r:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User)-[:FROM]->(s:State) where r.name<>"" and s.name<>"na" return count(distinct s.name),collect(distinct  s.name),r.name order by count(DISTINCT s.name) desc limit 5;
+
+match (r:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User) where r.name IN['HappyNewYear','NewYear','NewYears','NewYearsDay']  return u.screen_name, u.location order by toInteger(u.followers) desc limit 12;
+
+match (u:User) where u.sub_category = 'GOP' return u.screen_name, u.sub_category,u.followers order by toInteger(u.followers) desc limit 5;
+match (u:User) where u.sub_category = 'democrat' return u.screen_name, u.sub_category,u.followers order by toInteger(u.followers) desc limit 5;
+
+match (r:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User) where u.location IN['Ohio', 'Alaska', 'Alabama'] and t.month = '1' and t.year = '2016' and r.name<>""  return distinct r.name, u.location;
+
+match (h:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User) where h.name = 'Ohio' and u.sub_category in['GOP','democrat'] and t.month = '1' and t.year = '2016' return t.text, h.name,u.screen_name,u.sub_category limit 5;
+
+match (u:User)-[:POSTED]->(t:Tweet)-[:URL_USED]->(r:Url) where u.sub_category = 'GOP' and r.url<>"" and t.month = '1' and t.year = '2016' return u.screen_name, collect(r.url);
+
+match (m:User)<-[:MENTIONED]-(t:Tweet)<-[:POSTED]-(u:User)
+where t.month="1" and t.year="2016" and u.sub_category="GOP" and m.screen_name<>""
+//with u,m,t, count(u.screen_name) desc limit 5 AS c
+//this doesn't work as said in piazza and have no idea how to do it without including the count so it is here to stay
+return m.screen_name, m.location, collect(distinct u.screen_name),count(u.screen_name) order by count(u.screen_name) desc limit 5;
+
+match (r:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User) where u.sub_category = 'GOP' and t.month in['1','2','3'] and t.year = '2016' and r.name<>"" return r.name, count(r.name) order by count(r.name) desc limit 5;

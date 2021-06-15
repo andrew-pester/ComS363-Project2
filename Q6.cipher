@@ -1,0 +1,1 @@
+match (h:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User) where h.name = 'Ohio' and u.sub_category in['GOP','democrat'] and t.month = '1' and t.year = '2016' return t.text, h.name,u.screen_name,u.sub_category limit 5;

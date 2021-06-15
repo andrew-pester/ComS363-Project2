@@ -1,0 +1,1 @@
+select retweet_count,textbody, screen_name, category, sub_category  from user u join newtweet t on u.screen_name = t.posting_user where t.month_posted = 1 AND t.year_posted = 2016 order by t.retweet_count desc limit 5;

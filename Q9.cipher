@@ -1,0 +1,1 @@
+match (r:Hashtag)-[:TAGGED]->(t:Tweet)<-[:POSTED]-(u:User) where u.sub_category = 'GOP' and t.month in['1','2','3'] and t.year = '2016' and r.name<>"" return r.name, count(r.name) order by count(r.name) desc limit 5;

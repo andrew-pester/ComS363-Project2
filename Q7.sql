@@ -1,0 +1,1 @@
+select screen_name, state, group_concat(url) from user u join newtweet n on u.screen_name = n.posting_user join urlused r on r.tid= n.tid where u.sub_category = 'GOP' and month_posted = 1 and year_posted = 2016 group by screen_name;
